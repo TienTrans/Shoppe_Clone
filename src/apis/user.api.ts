@@ -11,7 +11,7 @@ const userApi = {
   getProfile() {
     return http.get<SuccessResponse<User>>('me')
   },
-  updateProfile(body: Partial<User>) {
+  updateProfile(body: bodyUpdateProfile) {
     return http.put<SuccessResponse<User>>('me', body)
   },
   uploadAvatar(formData: FormData) {

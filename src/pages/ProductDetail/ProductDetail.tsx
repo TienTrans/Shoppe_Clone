@@ -11,15 +11,16 @@ import QuantityController from 'src/component/QuantityController'
 import path from 'src/constants/path'
 import { purchaseStatus } from 'src/constants/purchase'
 import { Product as ProductType, ProductListConfig } from 'src/types/product.type'
-import { formatCurrency, formatNumberToSocialStyle, rateSale } from 'src/utils/ultils'
+import { formatCurrency, formatNumberToSocialStyle, getIdFromNameId, rateSale } from 'src/utils/ultils'
 
 export default function ProductDetail() {
   const [buyCount, setbuyCount] = useState(1)
-  const { id } = useParams()
+  const { nameId } = useParams()
+  const id = getIdFromNameId(nameId as string)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const { data: productDetailData } = useQuery({
-    queryKey: ['product', id],
+    queryKey: ['product', nameId],
     queryFn: () => productApi.getProductDetail(id as string)
   })
   const [currentIndexImage, setCurrentIndexImage] = useState([0, 5])

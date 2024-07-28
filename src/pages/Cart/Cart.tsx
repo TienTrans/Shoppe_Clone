@@ -8,7 +8,7 @@ import { purchaseStatus } from 'src/constants/purchase'
 import { Purchase } from 'src/types/purchase.type'
 import { formatCurrency } from 'src/utils/ultils'
 import { produce } from 'immer'
-import { keyBy } from 'lodash'
+import keyBy from 'lodash/keyBy'
 import { toast } from 'react-toastify'
 import { AppContext } from 'src/contexts/app.context'
 import noproduct from 'src/assets/images/cart-empty.png'
@@ -20,6 +20,7 @@ export default function Cart() {
     queryKey: ['purchases', { status: purchaseStatus.inCart }],
     queryFn: () => purchasesApi.getPurchases({ status: purchaseStatus.inCart })
   })
+
   const updatePurchaseMutation = useMutation({
     mutationFn: purchasesApi.updatePurchase,
     onSuccess: () => {
