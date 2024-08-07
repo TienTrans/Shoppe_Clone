@@ -1,10 +1,9 @@
-import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig } from 'axios'
+import axios, { AxiosError, AxiosInstance } from 'axios'
 import { toast } from 'react-toastify'
 import { URL_LOGIN, URL_LOGOUT, URL_REFRESH_TOKEN, URL_REGISTER } from 'src/apis/auth.api'
 import config from 'src/constants/config'
 import HttpStatusCode from 'src/constants/httpStatusCode.enum'
-import path from 'src/constants/path'
-import { AuthResponse, RefeshTokenReponse } from 'src/types/auth.type'
+import { AuthResponse } from 'src/types/auth.type'
 import { ErrorResponse } from 'src/types/utils.type'
 import {
   clearLS,
@@ -27,7 +26,7 @@ class Http {
     this.instance = axios.create({
       baseURL: config.baseURL,
       timeout: 10000,
-      headers: { 'Content-Type': 'application/json', 'expire-access-token': 5, 'expire-refresh-token': 60 * 60 }
+      headers: { 'Content-Type': 'application/json' }
     })
     this.instance.interceptors.request.use(
       (config) => {
